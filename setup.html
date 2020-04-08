@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <title>Setup</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("user_wkdJFBlB2uiBqVPhT9fAC");
+       })();
+    </script>
+</head>
+<body>
+<script>
+//importeert de .json file naar een array
+     async function lijst() {
+        const leerlingenlijst = await fetchData('Leerlingen.json');
+        console.log(leerlingenlijst.length)
+        return leerlingenlijst;
+    }
+    // functie die je in de console runt om mails te sturen naar alle leerlngnummers uit de array dus uit Leerlingen.json
+    async function aaaaaa(){
+    const leerlingenlijst = await lijst()
+    var fing = [];
+    console.log(leerlingenlijst)
+    console.log(leerlingenlijst.length)
+    for (var x=0; x<leerlingenlijst.length; x++){
+        let codeN = Math.floor((Math.random() * 10000));;
+        fing.push(codeN);
+        console.log(codeN, leerlingenlijst[x])
+        var template_params = {
+            "leerling": leerlingenlijst[x],
+            "code": codeN
+        }
+
+        var service_id = "default_service";
+        var template_id = "basictestmail";
+        emailjs.send(service_id, template_id, template_params);
+        console.log(codeN); // In definitieve versie veranderen naar de code toevoegen aan "extern bestand.json"
+    }
+
+//negeer dit deel, dit was een poging om het te editen maar het heeft NodeJS nodig ipv gewoon js, een andere poging was gedaan met Jquery oid, ook mislukt
+    // const fs = require('fs');
+    // const jsonContent = JSON.stringify(fing);
+    //
+    // fs.writeFile("./extern bestand.json", jsonContent, 'utf8', function (err) {
+    //     if (err) {
+    //         return console.log(err);
+    //     }
+    //     console.log("The file was saved!");
+    // });
+//stop met negeren
+    console.log(fing);
+  }
+  // functie nodig voor importeren .json files
+    function fetchData(jsonFile) {
+     return fetch(jsonFile).then(r=>r.json())
+    }
+</script>
+</body>
