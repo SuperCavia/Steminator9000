@@ -1,0 +1,24 @@
+/* Alpha 0.12, everying you see is subject to change */
+* {
+  margin: 0px;
+  padding: 20px;
+  font-family: "Times New Roman", Times;
+  background-color: yellow;
+}
+body {
+  text-align: center;
+}
+.mens {
+  margin: 10px;
+  background-color: red;
+}
+input{
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+}
+.autist {
+  margin: 10px;
+  background-color: red;
+  padding: 5px;
+}
